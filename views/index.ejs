@@ -14,15 +14,15 @@
   </h1>
   <p>Welcome to <%= title %>
   </p>
-
+  <h2>Listagem</h2>
   <ul>
     <% for (let i=0; i < result.length; i++) { %>
       <li>
-        <%= result[i].name %>
+        <%= result[i].name %> (<%= result[i].date %>) (<%= result[i].classe %>) (<%= result[i].taxi %>) (<%= result[i]._id %>)
       </li>
       <% } %>
   </ul>
-
+  <h2>Cadastro</h2>
   <form action="/save" method="POST">
     <p>
       <label> Nome do cliente:
@@ -48,6 +48,17 @@
     </p>
     <p>
       <input type="submit" value="Salvar">
+    </p>
+  </form>
+  <h2>Deletar agendamento</h2>
+  <form action="/remove" method="POST">
+    <p>
+      <label> ID do agendamento a ser excluido:
+        <input type="text" name="id">
+      </label>
+    </p>
+    <p>
+      <input type="submit" value="Excluir">
     </p>
   </form>
 
