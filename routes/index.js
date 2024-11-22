@@ -33,17 +33,25 @@ router.post('/save', async(req, res) =>{
 //   }
 // });
 
-router.delete('/delete/:id', async (req, res) => {
-  const id = req.params.id;
-  const objectId = new ObjectId(id);
-  const confirm = await db.confirmDelete(objectId);
-  if (confirm) {
-    const result = await db.remove(objectId);
-    res.json(result);
-  } else {
-    res.status(400).json({ message: 'Exclusão cancelada' });
-  }
-});
+// router.delete('/delete/:id', async (req, res) => {
+//   const id = req.params.id;
+//   const objectId = new ObjectId(id);
+//   const confirm = await db.confirmDelete(objectId);
+//   if (confirm) {
+//     const result = await db.remove(objectId);
+//     res.json(result);
+//   } else {
+//     res.status(400).json({ message: 'Exclusão cancelada' });
+//   }
+// });
+router.post('/delete', async(req, res) =>{
+  console.log('Rota /delete chamada!');
+  
+  const id = req.body.id;
+  const result = await db.delete(id);
+  console.log(result);
+  res.json(result);
+  });
 
 console.log('Conectado ao banco de dados!');
 
