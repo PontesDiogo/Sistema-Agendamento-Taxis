@@ -1,3 +1,5 @@
+const { name } = require('ejs');
+
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017';
 const dbName = 'AgendaTaxi';
@@ -17,6 +19,8 @@ async function close() {
 async function insert(customer) {
   const db = client.db(dbName);
   const collection = db.collection('customers');
+  console.log('Método insert chamado com sucesso'); 
+  
   const result = await collection.insertOne(customer);
   return result;
 }
@@ -42,6 +46,13 @@ async function remove(id) {
   return result;
 }
 
+async function find() {
+    const db = client.db(dbName);
+    const collection = db.collection('customers');
+    const customers = await collection.find().toArray();
+    return customers;
+  }
+
 module.exports = {
   connect,
   close,
@@ -49,4 +60,5 @@ module.exports = {
   read,
   update,
   remove,
+  find,
 };

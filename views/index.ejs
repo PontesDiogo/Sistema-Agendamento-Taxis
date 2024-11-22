@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <form action="/save" method="POST">
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>Welcome to <%= title %>
+  </p>
+
+  <ul>
+    <% for (let i=0; i < result.length; i++) { %>
+      <li>
+        <%= result[i].name %>
+      </li>
+      <% } %>
+  </ul>
+
+  <form action="/save" method="POST">
     <p>
-      <label> Nome do cliente: 
-        <input type="text">
+      <label> Nome do cliente:
+        <input type="text" name="name">
       </label>
     </p>
     <p>
-      <label> Data do agendamento: 
-        <input type="date">
+      <label> Data do agendamento:
+        <input type="date" name="date">
       </label>
     </p>
     <p>
-      <label> Classe do taxi: 
+      <label> Classe do taxi:
         <select name="classe" onchange="this.form.submit()" id=""></select>
         <option value="">Selecione uma classe</option>
       </label>
     </p>
     <p>
-      <label> Táxis disponíveis: 
+      <label> Táxis disponíveis:
         <select name="taxi" onchange="this.form.submit()" id=""></select>
         <option value="">Selecione um taxi</option>
       </label>
@@ -35,5 +51,6 @@
     </p>
   </form>
 
-  </body>
+</body>
+
 </html>

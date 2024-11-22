@@ -4,8 +4,9 @@ const db = require('../db');
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', async(req, res, next) => {
+  const result = await db.find();
+  res.render('index', { title: 'Express' , result});
 });
 
 router.post('/save', async(req, res) =>{
@@ -17,5 +18,6 @@ router.post('/save', async(req, res) =>{
   res.json(result);
   });
   
+console.log('Conectado ao banco de dados!');
 
 module.exports = router;
