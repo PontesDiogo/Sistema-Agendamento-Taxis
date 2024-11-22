@@ -74,18 +74,42 @@ async function confirmDelete(id) {
   }
 }
 
-async function remove(id) {
-  const db = client.db(dbName);
-  const collection = db.collection('customers');
-  const result = await collection.deleteOne({_id: id});
-  return result;
-}
+// async function remove(id) {
+//   const db = client.db(dbName);
+//   const collection = db.collection('customers');
+//   const result = await collection.deleteOne({_id: id});
+//   return result;
+// }
+
 
 async function find() {
     const db = client.db(dbName);
     const collection = db.collection('customers');
     const customers = await collection.find().toArray();
     return customers;
+  }
+
+  async function confirmDelete(id) {
+    const db = client.db(dbName);
+    const collection = db.collection('customers');
+    const doc = await collection.findOne({_id: id});
+    if (doc) {
+      const response = await rl.question(`Tem certeza que deseja excluir o documento com ID ${id}? (s/n)`);
+      if (response.toLowerCase() === 's') {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+  
+  async function remove(id) {
+    const db = client.db(dbName);
+    const collection = db.collection('customers');
+    const result = await collection.deleteOne({_id: id});
+    return result;
   }
 
 module.exports = {
@@ -95,5 +119,10 @@ module.exports = {
   read,
   update,
   remove,
+  confirmDelete,
   find,
 };
+
+
+
+
