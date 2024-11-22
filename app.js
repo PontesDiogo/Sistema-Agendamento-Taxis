@@ -8,6 +8,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+const port = process.env.PORT || 4000; // Altere para a porta desejada
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
