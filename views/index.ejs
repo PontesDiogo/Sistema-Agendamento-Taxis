@@ -7,5 +7,33 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <form action="/save" method="POST">
+    <p>
+      <label> Nome do cliente: 
+        <input type="text">
+      </label>
+    </p>
+    <p>
+      <label> Data do agendamento: 
+        <input type="date">
+      </label>
+    </p>
+    <p>
+      <label> Classe do taxi: 
+        <select name="classe" onchange="this.form.submit()" id=""></select>
+        <option value="">Selecione uma classe</option>
+      </label>
+    </p>
+    <p>
+      <label> Táxis disponíveis: 
+        <select name="taxi" onchange="this.form.submit()" id=""></select>
+        <option value="">Selecione um taxi</option>
+      </label>
+    </p>
+    <p>
+      <input type="submit" value="Salvar">
+    </p>
+  </form>
+
   </body>
 </html>
