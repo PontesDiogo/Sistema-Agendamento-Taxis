@@ -6,9 +6,14 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const { log } = require('console');
 
 var app = express();
-const port = process.env.PORT || 4000; // Altere para a porta desejada
+
+app.listen(3000, function(){
+  console.log('Rodando na porta 3000');
+  
+})
 
 
 
